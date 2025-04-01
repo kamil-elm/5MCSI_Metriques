@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commits par minute</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="font-family: Arial; background-color: #f9f9f9; padding: 40px;">
+  <h2>Commits par minute (repo OpenRSI/5MCSI_Metriques)</h2>
+  <canvas id="commitsChart" width="800" height="400"></canvas>
+
+  <script>
+    const dataFromServer = {{ data|tojson }};
+    const labels = Object.keys(dataFromServer);
+    const values = Object.values(dataFromServer);
+
+    const ctx = document.getElementById('commitsChart').getContext('2d');
+    const commitsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Nombre de commits',
+          data: values,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Distribution des commits par minute'
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Minute' }},
+          y: { title: { display: true, text: 'Commits' }}
+        }
+      }
+    });
+  </script>
+</body>
+</html>
