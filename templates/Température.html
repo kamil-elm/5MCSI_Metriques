@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Histogramme Température</title>
+    <title>Températures mensuelles - Année 2020</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
@@ -11,23 +11,31 @@
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['Mois', 'Température (°C)'],
-          ["Janvier", 5],
-          ["Février", 10],
-          ["Mars", 18],
-          ["Avril", 19],
-          ['Mai', 23]
+          ['Janvier', 5],
+          ['Février', 7],
+          ['Mars', 10],
+          ['Avril', 13],
+          ['Mai', 18],
+          ['Juin', 22],
+          ['Juillet', 25],
+          ['Août', 24],
+          ['Septembre', 20],
+          ['Octobre', 15],
+          ['Novembre', 10],
+          ['Décembre', 6]
         ]);
 
         var options = {
-          width: 800,
+          width: 900,
+          height: 500,
           legend: { position: 'none' },
           chart: {
-            title: 'Température à Tawarano',
-            subtitle: 'Température par mois'
+            title: 'Températures mensuelles à Tawarano - Année 2020',
+            subtitle: 'Évolution des températures au fil de l’année'
           },
           axes: {
             x: {
-              0: { side: 'top', label: 'Mois'}
+              0: { side: 'top', label: 'Mois' }
             }
           },
           bar: { groupWidth: "90%" }
@@ -39,7 +47,7 @@
     </script>
   </head>
   <body>
-    <h1>Histogramme des Températures 🌡️</h1>
+    <h1>Histogramme des Températures en 2020 🌡️</h1>
     <div id="top_x_div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
