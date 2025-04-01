@@ -34,6 +34,26 @@ def mongraphique():
 @app.route("/histogramme/")
 def monhistogramme():
     return render_template("Température.html")
+
+
+@app.route("/commits/")
+def commits():
+    url = "https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits"
+    response = requests.get(url)
+    commits_data = response.json()
+
+    minutes_list = []
+    for commit in commits_data:
+        try:
+            date_str = commit['commit']['author']['date']
+            date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
+            minutes_list.append(date_obj.minute)
+        except Exception as e:
+            continue
+
+    minutes_count = dict(Counter(minutes_list))
+    return render_template("commits.html", data=minutes_count)
+
   
 if __name__ == "__main__":
   app.run(debug=True)
